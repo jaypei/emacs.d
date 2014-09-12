@@ -1,0 +1,17 @@
+
+* About
+
+My new emacs configuration(2014) based on "[[https://github.com/purcell/emacs.d][a reasonable Emacs config]]".
+
+* Installation
+
+To install, clone this repo to ~/.emacs.d, i.e. ensure that the init.el contained in this repo ends up at ~/.emacs.d/init.el:
+
+#+BEGIN_SRC sh
+
+git clone https://github.com/purcell/emacs.d.git ~/.emacs.d
+
+#+END_SRC
+
+Upon starting up Emacs for the first time, further third-party packages will be automatically downloaded and installed.
+

@@ -83,5 +83,11 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
+(defun exz/add-hooks (fn &optional mode-hooks)
+  "Add FN to each MODE-HOOKS."
+  (mapcar (lambda (x)
+            (add-hook x fn))
+          mode-hooks))
+
 
 (provide 'init-utils)

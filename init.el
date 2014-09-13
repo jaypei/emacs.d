@@ -58,7 +58,7 @@
 ;; (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-yasnippet)
-;; (require 'init-windows)
+(require 'init-windows)
 ;; (require 'init-sessions)
 (require 'init-fonts)
 ;; (require 'init-mmm)

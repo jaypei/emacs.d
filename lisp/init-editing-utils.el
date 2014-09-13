@@ -82,23 +82,29 @@
 (diminish 'undo-tree-mode)
 
 
+;; Show matching parens
+(require-package 'highlight-parentheses)
+(require 'highlight-parentheses)
+(exz/add-hooks 'highlight-parentheses-mode
+               (list 'emacs-lisp-mode-hook
+                     'lisp-interaction-mode-hook
+                     'python-mode-hook
+                     'go-mode-hook
+                     'c-mode-common-hook))
+(setq show-paren-style 'parentheses)
+(show-paren-mode 1)
 
+
 ;; Don't disable narrowing commands
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-defun 'disabled nil)
 
-;; Show matching parens
-(show-paren-mode 1)
-
 ;; Don't disable case-change functions
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; Rectangle selections, and overwrite text when the selection is active
-(cua-selection-mode t)                  ; for rectangles, CUA is nice
-
-
+
 ;; Handy key bindings
 ;; To be able to M-x without meta
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
@@ -132,6 +138,8 @@
 (global-unset-key [M-left])
 (global-unset-key [M-right])
 
+
+
 (defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
   (interactive)
@@ -142,6 +150,7 @@
 (global-set-key (kbd "C-M-<backspace>") 'kill-back-to-indentation)
 
 
+
 ;; Page break lines
 (require-package 'page-break-lines)
 (custom-set-variables
@@ -223,6 +232,10 @@ forward N lines; otherwise backward."
 (diminish 'whole-line-or-region-mode)
 (make-variable-buffer-local 'whole-line-or-region-mode)
 
+
+;; Rectangle selections, and overwrite text when the selection is active
+(cua-selection-mode t)                  ; for rectangles, CUA is nice
+
 (defun suspend-mode-during-cua-rect-selection (mode-name)
   "Add an advice to suspend `MODE-NAME' while selecting a CUA rectangle."
   (let ((flagvar (intern (format "%s-was-active-before-cua-rectangle" mode-name)))
@@ -243,7 +256,6 @@ forward N lines; otherwise backward."
 
 
 
-
 (defun sanityinc/open-line-with-reindent (n)
   "A version of `open-line' which reindents the start and end positions.
 If there is a fill prefix and/or a `left-margin', insert them
@@ -274,9 +286,8 @@ With arg N, insert N newlines."
 (global-set-key (kbd "C-o") 'sanityinc/open-line-with-reindent)
 
 
-;;----------------------------------------------------------------------------
+
 ;; Random line sorting
-;;----------------------------------------------------------------------------
 (defun sort-lines-random (beg end)
   "Sort lines in region randomly."
   (interactive "r")

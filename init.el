@@ -36,7 +36,7 @@
 
 ;; (require-package 'wgrep)
 ;; (require-package 'project-local-variables)
-;; (require-package 'diminish)
+(require-package 'diminish)
 (require-package 'scratch)
 ;; (require-package 'mwe-log-commands)
 
@@ -63,11 +63,11 @@
 (require 'init-fonts)
 ;; (require 'init-mmm)
 
-;; (require 'init-editing-utils)
+(require 'init-editing-utils)
 
 ;; (require 'init-vc)
 ;; (require 'init-darcs)
-;; (require 'init-git)
+(require 'init-git)
 ;; (require 'init-github)
 
 ;; (require 'init-crontab)

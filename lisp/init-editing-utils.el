@@ -1,12 +1,17 @@
-(require-package 'unfill)
+;;; Package --- Editing
+;;; Commentary:
+
+;;; This file bootstraps the configuration, which is divided into
+;;; a number of other files.
+
+;;; Code:
+
 (require-package 'whole-line-or-region)
 
 (when (fboundp 'electric-pair-mode)
   (electric-pair-mode))
 
-;;----------------------------------------------------------------------------
 ;; Some basic preferences
-;;----------------------------------------------------------------------------
 (setq-default
  blink-cursor-delay 0
  blink-cursor-interval 0.4
@@ -35,10 +40,6 @@
 (when *is-a-mac*
   (setq-default locate-command "mdfind"))
 
-(global-auto-revert-mode)
-(setq global-auto-revert-non-file-buffers t
-      auto-revert-verbose nil)
-
 (transient-mark-mode t)
 
 
@@ -58,10 +59,6 @@
                 minibuffer-setup-hook))
   (add-hook hook #'sanityinc/no-trailing-whitespace))
 
-
-(require-package 'whitespace-cleanup-mode)
-(global-whitespace-cleanup-mode t)
-
 
 ;;; Newline behaviour
 
@@ -76,13 +73,6 @@
 
 
 
-(when (eval-when-compile (string< "24.3.1" emacs-version))
-  ;; https://github.com/purcell/emacs.d/issues/138
-  (after-load 'subword
-    (diminish 'subword-mode)))
-
-
-
 (when (fboundp 'global-prettify-symbols-mode)
   (global-prettify-symbols-mode))
 
@@ -92,59 +82,24 @@
 (diminish 'undo-tree-mode)
 
 
-(require-package 'highlight-symbol)
-(dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
-  (add-hook hook 'highlight-symbol-mode)
-  (add-hook hook 'highlight-symbol-nav-mode))
-(eval-after-load 'highlight-symbol
-  '(diminish 'highlight-symbol-mode))
 
-;;----------------------------------------------------------------------------
-;; Zap *up* to char is a handy pair for zap-to-char
-;;----------------------------------------------------------------------------
-(autoload 'zap-up-to-char "misc" "Kill up to, but not including ARGth occurrence of CHAR.")
-(global-set-key (kbd "M-Z") 'zap-up-to-char)
-
-
-
-(require-package 'browse-kill-ring)
-
-
-;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands
-;;----------------------------------------------------------------------------
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-defun 'disabled nil)
 
-;;----------------------------------------------------------------------------
 ;; Show matching parens
-;;----------------------------------------------------------------------------
 (show-paren-mode 1)
 
-;;----------------------------------------------------------------------------
-;; Expand region
-;;----------------------------------------------------------------------------
-(require-package 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-
-;;----------------------------------------------------------------------------
 ;; Don't disable case-change functions
-;;----------------------------------------------------------------------------
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-
-;;----------------------------------------------------------------------------
 ;; Rectangle selections, and overwrite text when the selection is active
-;;----------------------------------------------------------------------------
 (cua-selection-mode t)                  ; for rectangles, CUA is nice
 
 
-;;----------------------------------------------------------------------------
 ;; Handy key bindings
-;;----------------------------------------------------------------------------
 ;; To be able to M-x without meta
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
@@ -156,12 +111,11 @@
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
 (require-package 'ace-jump-mode)
-(global-set-key (kbd "C-;") 'ace-jump-mode)
-(global-set-key (kbd "C-:") 'ace-jump-word-mode)
+(global-set-key (kbd "C-;") 'ace-jump-char-mode)
+(global-set-key (kbd "C-:") 'ace-jump-mode)
 
-
-(require-package 'multiple-cursors)
 ;; multiple-cursors
+(require-package 'multiple-cursors)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-+") 'mc/mark-next-like-this)
@@ -171,13 +125,12 @@
 (global-set-key (kbd "C-c c c") 'mc/edit-lines)
 (global-set-key (kbd "C-c c e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-c c a") 'mc/edit-beginnings-of-lines)
-
+(global-unset-key (kbd "M-<down-mouse-1>"))
+(global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
 ;; Train myself to use M-f and M-b instead
 (global-unset-key [M-left])
 (global-unset-key [M-right])
-
-
 
 (defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
@@ -189,16 +142,17 @@
 (global-set-key (kbd "C-M-<backspace>") 'kill-back-to-indentation)
 
 
-;;----------------------------------------------------------------------------
 ;; Page break lines
-;;----------------------------------------------------------------------------
 (require-package 'page-break-lines)
+(custom-set-variables
+ '(page-break-lines-char 126))
+(custom-set-faces
+ '(page-break-lines ((t (:inherit warning :slant normal :weight normal)))))
 (global-page-break-lines-mode)
 (diminish 'page-break-lines-mode)
 
-;;----------------------------------------------------------------------------
+
 ;; Fill column indicator
-;;----------------------------------------------------------------------------
 (when (eval-when-compile (> emacs-major-version 23))
   (require-package 'fill-column-indicator)
   (defun sanityinc/prog-mode-fci-settings ()
@@ -234,11 +188,10 @@
           (turn-on-fci-mode))))))
 
 
-;;----------------------------------------------------------------------------
-;; Shift lines up and down with M-up and M-down. When paredit is enabled,
+;; Shift lines up and down with M-up and M-down. When paredit is enabled,
 ;; it will use those keybindings. For this reason, you might prefer to
 ;; use M-S-up and M-S-down, which will work even in lisp modes.
-;;----------------------------------------------------------------------------
+
 (require-package 'move-dup)
 (global-set-key [M-up] 'md/move-lines-up)
 (global-set-key [M-down] 'md/move-lines-down)
@@ -264,24 +217,8 @@ forward N lines; otherwise backward."
 (global-set-key (kbd "C-c p") 'md/duplicate-down)
 (global-set-key (kbd "C-c P") 'md/duplicate-up)
 
-;;----------------------------------------------------------------------------
-;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
-;;----------------------------------------------------------------------------
-(defun backward-up-sexp (arg)
-  "Jump up to the start of the ARG'th enclosing sexp."
-  (interactive "p")
-  (let ((ppss (syntax-ppss)))
-    (cond ((elt ppss 3)
-           (goto-char (elt ppss 8))
-           (backward-up-sexp (1- arg)))
-          ((backward-up-list arg)))))
-
-(global-set-key [remap backward-up-list] 'backward-up-sexp) ; C-M-u, C-M-up
-
-
-;;----------------------------------------------------------------------------
+
 ;; Cut/copy the current line if no region is active
-;;----------------------------------------------------------------------------
 (whole-line-or-region-mode t)
 (diminish 'whole-line-or-region-mode)
 (make-variable-buffer-local 'whole-line-or-region-mode)
@@ -353,24 +290,10 @@ With arg N, insert N newlines."
                    (lambda (s1 s2) (eq (random 2) 0)))))))
 
 
-
-
-(when (executable-find "ag")
-  (require-package 'ag)
-  (require-package 'wgrep-ag)
-  (setq-default ag-highlight-search t)
-  (global-set-key (kbd "M-?") 'ag-project))
-
-
-
-(require-package 'highlight-escape-sequences)
-(hes-mode)
-
-
-(require-package 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x 5" "C-c ;" "C-c ; f" "C-c ' f" "C-x n"))
-(guide-key-mode 1)
-(diminish 'guide-key-mode)
-
-
 (provide 'init-editing-utils)
+;;; init-editing-utils.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

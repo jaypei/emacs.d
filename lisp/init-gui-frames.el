@@ -1,3 +1,8 @@
+;;; Package --- Gui frames
+;;; Commentary:
+
+;;; Code:
+
 ;;----------------------------------------------------------------------------
 ;; Stop C-z from minimizing windows under OS X
 ;;----------------------------------------------------------------------------
@@ -16,6 +21,7 @@
 (setq use-dialog-box nil)
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message t)
+(setq initial-scratch-message ";; *scratch*\n\n")
 
 
 ;;----------------------------------------------------------------------------
@@ -70,3 +76,9 @@
 
 
 (provide 'init-gui-frames)
+;;; init-gui-frames.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

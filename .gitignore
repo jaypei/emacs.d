@@ -1,5 +1,11 @@
 *.elc
 *~
 \#*
+*.lock
 /elpa
-ac-comphist.dat
+/ac-comphist.dat
+/.emacs.desktop
+/.session
+/eshell/*
+/frame-restore-parameters
+/history

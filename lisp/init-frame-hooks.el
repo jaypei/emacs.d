@@ -1,7 +1,13 @@
+;;; Package --- Frame hooks
+;;; Commentary:
+
+;;; Code:
+
+
 (defvar after-make-console-frame-hooks '()
-  "Hooks to run after creating a new TTY frame")
+  "Hooks to run after creating a new TTY frame.")
 (defvar after-make-window-system-frame-hooks '()
-  "Hooks to run after creating a new window-system frame")
+  "Hooks to run after creating a new window-system frame.")
 
 (defun run-after-make-frame-hooks (frame)
   "Run configured hooks in response to the newly-created FRAME.
@@ -23,3 +29,9 @@ Selectively runs either `after-make-console-frame-hooks' or
 
 
 (provide 'init-frame-hooks)
+;;; init-frame-hooks.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

@@ -1,3 +1,9 @@
+;;; Package --- OSX key boundings
+;;; Commentary:
+
+;;; Code:
+
+
 (when *is-a-mac*
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'none)
@@ -18,3 +24,9 @@
 
 
 (provide 'init-osx-keys)
+;;; init-osx-keys.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

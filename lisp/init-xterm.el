@@ -1,3 +1,9 @@
+;;; Package --- Xterm config
+;;; Commentary:
+
+;;; Code:
+
+
 (require 'init-frame-hooks)
 
 (defun fix-up-xterm-control-arrows ()
@@ -27,4 +33,11 @@
 
 (add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
 
+
 (provide 'init-xterm)
+;;; init-xterm.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

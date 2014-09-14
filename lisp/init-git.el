@@ -17,7 +17,8 @@
 (global-git-gutter-mode +1)
 (custom-set-variables
  '(git-gutter:disabled-modes '(org-mode image-mode)))
-
+(global-set-key (kbd "C-c C-n") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-c C-p") 'git-gutter:previous-hunk)
 
 (setq-default
  magit-save-some-buffers nil

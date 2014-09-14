@@ -1,8 +1,13 @@
-;;----------------------------------------------------------------------------
+;;; Package --- OSX proxy support
+;;; Commentary:
+
 ;; Pick up http_proxy & https_proxy from Mac system config using proxy-config
 ;; tool available from
 ;; http://www.cs.usyd.edu.au/~massad/project-proxy-config.html
-;;----------------------------------------------------------------------------
+
+;;; Code:
+
+
 (when (and *is-a-mac* (executable-find "proxy-config"))
   (defun mac-configured-proxy (proto)
     (sanityinc/string-rtrim
@@ -34,3 +39,9 @@
 
 
 (provide 'init-proxies)
+;;; init-proxies.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

@@ -1,3 +1,9 @@
+;;; Package --- ISearch config
+;;; Commentary:
+
+;;; Code:
+
+
 ;; Show number of matches while searching
 (when (>= emacs-major-version 24)
   (require-package 'anzu)
@@ -73,3 +79,9 @@ This is useful when followed by an immediate kill."
 
 
 (provide 'init-isearch)
+;;; init-isearch.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

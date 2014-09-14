@@ -6,14 +6,15 @@
 ;; Try to load git version
 (let* ((n-git-path (exz/make-dotemacs-path "site-lisp/neotree"))
        (n-git-autoloads-file (exz/make-dotemacs-path "site-lisp/neotree/neotree-autoloads.el"))
-       (n-git-src-file (exz/make-dotemacs-path "site-lisp/neotree/neotree-autoloads.el")))
+       (n-git-src-file (exz/make-dotemacs-path "site-lisp/neotree/neotree.el")))
 
   (when (file-directory-p n-git-path)
-      (add-to-list 'load-path n-git-path)
-      (unless (file-exists-p n-git-autoloads-file)
-        (update-file-autoloads n-git-src-file t n-git-autoloads-file))
-      (load-file n-git-autoloads-file)
-      (exz/debug "[NeoTree] Load local version.")))
+    (add-to-list 'load-path n-git-path)
+    (unless (file-exists-p n-git-autoloads-file)
+      (update-file-autoloads n-git-src-file t n-git-autoloads-file))
+    (load-file n-git-autoloads-file)
+    (require 'neotree n-git-src-file)
+    (exz/debug "[NeoTree] Load local version.")))
 
 (unless (boundp 'neotree-show)
   (require-package 'neotree))

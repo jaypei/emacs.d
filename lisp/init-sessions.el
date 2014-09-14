@@ -1,4 +1,10 @@
+;;; Package --- Session
+;;; Commentary:
+
 ;; save a list of open files in ~/.emacs.d/.emacs.desktop
+
+;;; Code:
+
 (setq desktop-path (list user-emacs-directory)
       desktop-auto-save-timeout 600)
 (desktop-save-mode 1)
@@ -76,3 +82,10 @@
 
 
 (provide 'init-sessions)
+;;; init-sessions.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
+

@@ -1,9 +1,40 @@
+;;; Package --- Utilities
+;;; Commentary:
+
+;;; Code:
+
+;; macros
+
 (defmacro after-load (feature &rest body)
   "After FEATURE is loaded, evaluate BODY."
   (declare (indent defun))
   `(eval-after-load ,feature
      '(progn ,@body)))
 
+
+
+;; exz functions
+
+(defun exz/debug (&rest args)
+  "Print debug message with ARGS."
+  (let ((format-string (car args))
+        (other-args (cdr args)))
+    (setf format-string (concat "[DEBUG] " format-string))
+    (push format-string other-args)
+    (apply 'message other-args)))
+
+
+(defun exz/add-hooks (fn &optional mode-hooks)
+  "Add FN to each MODE-HOOKS."
+  (mapcar (lambda (x)
+            (add-hook x fn))
+          mode-hooks))
+
+(defun exz/make-dotemacs-path (sub-path)
+  "Return dot-emacs path, SUB-PATH is a relative path."
+  (expand-file-name sub-path user-emacs-directory))
+
+
 
 ;;----------------------------------------------------------------------------
 ;; Handier way to add modes to auto-mode-alist
@@ -83,11 +114,13 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
-(defun exz/add-hooks (fn &optional mode-hooks)
-  "Add FN to each MODE-HOOKS."
-  (mapcar (lambda (x)
-            (add-hook x fn))
-          mode-hooks))
+
 
 
 (provide 'init-utils)
+;;; init-utils.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

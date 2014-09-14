@@ -1,4 +1,7 @@
+;;; Package --- Fonts
+;;; Commentary:
 
+;;; Code:
 ;; font
 (eval-when-compile (require 'cl)) 
 
@@ -9,12 +12,12 @@
     (set-fontset-font (frame-parameter nil 'font) charset 
                       (font-spec :family chinese :size chinese-size)))) 
 
-
 (defun sanityinc/maybe-use-default-font-for-symbols ()
   "Force Emacs to render symbols using the default font, if so configured."
   (exz/set-font "Fantasque Sans Mono" "文泉驿等宽微米黑" 16 16))
 
-(add-hook 'after-init-hook 'sanityinc/maybe-use-default-font-for-symbols)
+(when (display-graphic-p)
+  (add-hook 'after-init-hook 'sanityinc/maybe-use-default-font-for-symbols))
 
 
 ;;; Changing font sizes
@@ -56,4 +59,12 @@ by the :height face attribute."
 (global-set-key (kbd "C-M--") 'sanityinc/decrease-default-font-height)
 
 
+
 (provide 'init-fonts)
+;;; init-fonts.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
+

@@ -134,6 +134,10 @@
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
+(global-set-key (kbd "C-1") 'move-beginning-of-line)
+(global-set-key (kbd "C-2") 'set-mark-command)
+(global-set-key (kbd "C-3") 'move-end-of-line)
+
 ;; Train myself to use M-f and M-b instead
 (global-unset-key [M-left])
 (global-unset-key [M-right])

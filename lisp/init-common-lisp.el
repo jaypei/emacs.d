@@ -1,3 +1,9 @@
+;;; Package --- Common lisp config
+;;; Commentary:
+
+;;; Code:
+
+
 ;; See http://bc.tech.coop/blog/070927.html
 (add-auto-mode 'lisp-mode "\\.cl\\'")
 (add-hook 'lisp-mode-hook (lambda ()
@@ -42,3 +48,9 @@
 
 
 (provide 'init-common-lisp)
+;;; init-common-lisp.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

@@ -19,6 +19,7 @@
 (unless (boundp 'neotree-show)
   (require-package 'neotree))
 
+(customize-set-value 'neo-smart-open t)
 (global-set-key [f8] 'neotree-toggle)
 
 (provide 'init-neotree)

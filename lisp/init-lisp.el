@@ -1,3 +1,9 @@
+;;; Package --- Lisp config
+;;; Commentary:
+
+;;; Code:
+
+
 (require-package 'elisp-slime-nav)
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'elisp-slime-nav-mode))
@@ -117,7 +123,6 @@
 (defun sanityinc/lisp-setup ()
   "Enable features useful in any Lisp mode."
   (rainbow-delimiters-mode t)
-  (enable-paredit-mode)
   (turn-on-eldoc-mode)
   (redshank-mode))
 
@@ -156,10 +161,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.emacs-project\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("archive-contents\\'" . emacs-lisp-mode))
-
-(require-package 'cl-lib-highlight)
-(after-load 'lisp-mode
-  (cl-lib-highlight-initialize))
 
 ;; ----------------------------------------------------------------------------
 ;; Delete .elc files when reverting the .el from VC or magit
@@ -222,3 +223,9 @@
 
 
 (provide 'init-lisp)
+;;; init-lisp.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

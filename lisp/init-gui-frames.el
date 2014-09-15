@@ -21,8 +21,13 @@
 (setq use-dialog-box nil)
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message t)
-(setq initial-scratch-message ";; *scratch*\n\n")
+(menu-bar-mode -1)                      ; menu-bar-mode
 
+;; 防止页面滚动时跳动
+(setq-default scroll-margin 3
+              scroll-conservatively 10000)
+
+
 
 ;;----------------------------------------------------------------------------
 ;; Show a marker in the left fringe for lines not in the buffer

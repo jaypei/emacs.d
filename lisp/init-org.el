@@ -1,6 +1,13 @@
 (when (< emacs-major-version 24)
   (require-package 'org))
 (require-package 'org-fstree)
+
+(require-package 'ox-reveal)
+
+(after-load 'org
+  (require 'ox-publish)
+  (require 'ox-html))
+
 (when *is-a-mac*
   (require-package 'org-mac-link)
   (autoload 'org-mac-grab-link "org-mac-link" nil t)
@@ -10,18 +17,89 @@
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
-;; Various preferences
-(setq org-log-done t
-      org-completion-use-ido t
-      org-edit-timestamp-down-means-later t
-      org-agenda-start-on-weekday nil
-      org-agenda-span 14
-      org-agenda-include-diary t
-      org-agenda-window-setup 'current-window
-      org-fast-tag-selection-single-key 'expert
-      org-export-kill-product-buffer-when-displayed t
-      org-tags-column 80)
+(defvar exz/org-note-dir "~/work/org")
+(defvar exz/org-note-static-dir "~/work/org/static")
+(defvar exz/org-note-publish-dir "~/work/org-publish")
+(defvar exz/org-note-publish-static_dir "~/work/org-publish/static")
+(defvar exz/org-default-notes-file "~/work/org/refile.org")
+(defvar exz/org-agenda-files (quote ("~/work/org/todo")))
 
+;; Various preferences
+(setq-default org-log-done t
+              org-completion-use-ido t
+              org-edit-timestamp-down-means-later t
+              org-agenda-start-on-weekday nil
+              org-agenda-span 14
+              org-agenda-include-diary t
+              org-agenda-window-setup 'current-window
+              org-agenda-files exz/org-agenda-files
+              org-fast-tag-selection-single-key 'expert
+              org-export-kill-product-buffer-when-displayed t
+              org-tags-column 80
+              org-src-fontify-natively t ; fontify code in code blocks
+              org-directory exz/org-note-dir
+              org-default-notes-file exz/org-default-notes-file
+              )
+
+
+(setq-default org-publish-project-alist
+              '(
+                ;; My note
+                ("note-org"
+                 :base-directory exz/org-note-dir
+                 :publishing-directory exz/org-note-publish-dir
+                 :base-extension "org"
+                 :recursive t
+                 :publishing-function org-html-publish-to-html
+                 :auto-index nil
+                 :index-filename "index.org"
+                 :index-title "index"
+                 :link-home "index.html"
+                 :section-numbers nil
+                 :style "<link rel=\"stylesheet\"
+                       href=\"./style/emacs.css\"
+                       type=\"text/css\"/>")
+                ("note-static"
+                 :base-directory "~/work/vimwiki/org-static"
+                 :publishing-directory "~/work/vimwiki/org-publish/static"
+                 :recursive t
+                 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
+                 :publishing-function org-publish-attachment)
+                ("note"
+                 :components ("note-org" "note-static")
+                 :author "jaypei <jaypei97159@gmail.com>")
+                ;; My blog
+                ("jaypei-blog-org"
+                 ;; Path to your org files.
+                 :base-directory "~/work/jaypei-blog/org/"
+                 :base-extension "org"
+                 ;; Path to your Jekyll project.
+                 :publishing-directory "~/work/jaypei-blog/jekyll/"
+                 :recursive t
+                 :publishing-function org-html-publish-to-html
+                 :headline-levels 4
+                 :html-extension "html"
+                 :body-only t) ;; Only export section between <body> </body>
+                ("jaypei-blog-static"
+                 :base-directory "~/work/jaypei-blog/org/"
+                 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+                 :publishing-directory "~/work/jaypei-blog/"
+                 :recursive t
+                 :publishing-function org-publish-attachment)
+                ("jaypei-blog" :components ("jaypei-blog-org" "jaypei-blog-static"))))
+
+;; I use C-c c to start capture mode
+(global-set-key (kbd "C-c c")
+                (lambda ()
+                  (find-file "~/work/org/todo/index.org")))
+
+;; org
+(add-hook 'org-mode-hook
+          (lambda ()
+            (org-indent-mode)
+            (org-display-inline-images t)))
+
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 
 ; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
 (setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
@@ -34,6 +112,44 @@
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
               (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
+
+(setq-default org-todo-keyword-faces
+              (quote (("TODO" :foreground "red" :weight bold)
+                      ("NEXT" :foreground "blue" :weight bold)
+                      ("DONE" :foreground "forest green" :weight bold)
+                      ("WAITING" :foreground "orange" :weight bold)
+                      ("HOLD" :foreground "magenta" :weight bold)
+                      ("CANCELLED" :foreground "forest green" :weight bold)
+                      ("MEETING" :foreground "forest green" :weight bold)
+                      ("PHONE" :foreground "forest green" :weight bold))))
+
+;; (setq org-todo-state-tags-triggers
+;;       (quote (("CANCELLED" ("CANCELLED" . t))
+;;               ("WAITING" ("WAITING" . t))
+;;               ("HOLD" ("WAITING") ("HOLD" . t))
+;;               (done ("WAITING") ("HOLD"))
+;;               ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+;;               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+;;               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+
+;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
+(setq-default org-capture-templates
+              (quote (("t" "todo" entry (file exz/org-default-notes-file)
+                       "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+                      ("r" "respond" entry (file exz/org-default-notes-file)
+                       "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+                      ("n" "note" entry (file exz/org-default-notes-file)
+                       "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+                      ("j" "Journal" entry (file+datetree exz/org-default-notes-file)
+                       "* %?\n%U\n" :clock-in t :clock-resume t)
+                      ("w" "org-protocol" entry (file exz/org-default-notes-file)
+                       "* TODO Review %c\n%U\n" :immediate-finish t)
+                      ("m" "Meeting" entry (file exz/org-default-notes-file)
+                       "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                      ("p" "Phone call" entry (file exz/org-default-notes-file)
+                       "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+                      ("h" "Habit" entry (file exz/org-default-notes-file)
+                       "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -77,27 +193,6 @@
   (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro))
 
 
-;; ;; Show iCal calendars in the org agenda
-;; (when (and *is-a-mac* (require 'org-mac-iCal nil t))
-;;   (setq org-agenda-include-diary t
-;;         org-agenda-custom-commands
-;;         '(("I" "Import diary from iCal" agenda ""
-;;            ((org-agenda-mode-hook #'org-mac-iCal)))))
-
-;;   (add-hook 'org-agenda-cleanup-fancy-diary-hook
-;;             (lambda ()
-;;               (goto-char (point-min))
-;;               (save-excursion
-;;                 (while (re-search-forward "^[a-z]" nil t)
-;;                   (goto-char (match-beginning 0))
-;;                   (insert "0:00-24:00 ")))
-;;               (while (re-search-forward "^ [a-z]" nil t)
-;;                 (goto-char (match-beginning 0))
-;;                 (save-excursion
-;;                   (re-search-backward "^[0-9]+:[0-9]+-[0-9]+:[0-9]+ " nil t))
-;;                 (insert (match-string 0))))))
-
-
 (after-load 'org
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)
   (when *is-a-mac*
@@ -124,7 +219,14 @@
      (screen . nil)
      (sh . t)
      (sql . nil)
-     (sqlite . t))))
+     (sqlite . t)
+     (perl . t)
+     (plantuml . t))))
+
+;; for plant-uml
+(if *is-a-mac*
+    (setq-default org-plantuml-jar-path
+                  (expand-file-name "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar")))
 
 
 (provide 'init-org)

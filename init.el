@@ -19,6 +19,8 @@
 (defconst *is-a-windows* (eq system-type 'windows-nt))
 (defconst *is-gui* (display-graphic-p))
 (defconst *is-console* (not *is-gui*))
+(defconst *is-my-home-arch* (equal (system-name) "jaypei-home"))
+(defconst *is-my-mbp-laptop* (equal (system-name) "jaypei-mbp.local"))
 
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
@@ -62,27 +64,26 @@
 (require 'init-yasnippet)
 (require 'init-windows)
 (require 'init-fonts)
-(require 'init-mmm)
-
 (require 'init-editing-utils)
+;; (require 'init-paredit)
 
 (require 'init-vc)
 (require 'init-darcs)
 (require 'init-git)
 
-;; (require 'init-crontab)
-;; (require 'init-textile)
-;; (require 'init-markdown)
+(require 'init-crontab)
+(require 'init-markdown)
+(require 'init-python)
+(require 'init-golang)
 ;; (require 'init-csv)
 ;; (require 'init-erlang)
 ;; (require 'init-javascript)
 ;; (require 'init-php)
-;; (require 'init-org)
-;; (require 'init-nxml)
 ;; (require 'init-html)
 ;; (require 'init-css)
+(require 'init-org)
+;; (require 'init-nxml)
 ;; (require 'init-haml)
-;; (require 'init-python-mode)
 ;; (require 'init-haskell)
 ;; (require 'init-ruby-mode)
 ;; (require 'init-rails)
@@ -91,9 +92,9 @@
 ;; (require 'init-lisp)
 ;; (require 'init-slime)
 ;; (require 'init-clojure)
-;; (when (>= emacs-major-version 24)
-;;   (require 'init-clojure-cider))
-;; (require 'init-common-lisp)
+(when (>= emacs-major-version 24)
+  (require 'init-clojure-cider))
+(require 'init-common-lisp)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))

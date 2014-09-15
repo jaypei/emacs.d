@@ -33,9 +33,12 @@
  set-mark-command-repeat-pop t
  show-trailing-whitespace t
  tooltip-delay 1.5
- truncate-lines nil
+ truncate-lines t
  truncate-partial-width-windows nil
- visible-bell t)
+ visible-bell t
+ auto-save-default nil
+ kill-ring-max 200                  ; 用一个很大的 kill ring. 防止误删
+ truncate-lines nil)
 
 (when *is-a-mac*
   (setq-default locate-command "mdfind"))

@@ -1,5 +1,6 @@
 ;;; Package --- Git config
 ;;; Commentary:
+
 ;;; Code:
 
 
@@ -8,17 +9,6 @@
 (require-package 'git-rebase-mode)
 (require-package 'gitignore-mode)
 (require-package 'gitconfig-mode)
-
-(require-package 'git-gutter)
-(require-package 'git-gutter-fringe)
-
-;; git-gutter
-(require 'git-gutter-fringe)
-(global-git-gutter-mode +1)
-(custom-set-variables
- '(git-gutter:disabled-modes '(org-mode image-mode)))
-(global-set-key (kbd "C-c C-n") 'git-gutter:next-hunk)
-(global-set-key (kbd "C-c C-p") 'git-gutter:previous-hunk)
 
 (setq-default
  magit-save-some-buffers nil
@@ -53,6 +43,16 @@
 (when *is-a-mac*
   (after-load 'magit
     (add-hook 'magit-mode-hook (lambda () (local-unset-key [(meta h)])))))
+
+;; git-gutter (replaced by vc)
+;; (require-package 'git-gutter)
+;; (require-package 'git-gutter-fringe)
+;; (require 'git-gutter-fringe)
+;; (global-git-gutter-mode +1)
+;; (custom-set-variables
+;;  '(git-gutter:disabled-modes '(org-mode image-mode)))
+;; (global-set-key (kbd "C-c C-n") 'git-gutter:next-hunk)
+;; (global-set-key (kbd "C-c C-p") 'git-gutter:previous-hunk)
 
 
 (provide 'init-git)

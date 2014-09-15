@@ -1,3 +1,8 @@
+;;; Package --- Darcs
+;;; Commentary:
+
+;;; Code:
+
 (require-package 'darcsum)
 (require-package 'vc-darcs)
 
@@ -10,3 +15,9 @@
 (setq darcsum-whatsnew-switches "-l")
 
 (provide 'init-darcs)
+;;; init-darcs.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

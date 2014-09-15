@@ -20,6 +20,9 @@
 
 (add-auto-mode 'conf-mode "Procfile")
 
+(if *is-a-mac*
+    (setq save-interprogram-paste-before-kill nil))
+
 
 (provide 'init-misc)
 ;;; init-misc.el ends here

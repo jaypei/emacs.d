@@ -15,6 +15,10 @@
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
+(defconst *is-a-linux* (eq system-type 'gnu/linux))
+(defconst *is-a-windows* (eq system-type 'windows-nt))
+(defconst *is-gui* (display-graphic-p))
+(defconst *is-console* (not *is-gui*))
 
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
@@ -62,10 +66,9 @@
 
 (require 'init-editing-utils)
 
-;; (require 'init-vc)
-;; (require 'init-darcs)
+(require 'init-vc)
+(require 'init-darcs)
 (require 'init-git)
-;; (require 'init-github)
 
 ;; (require 'init-crontab)
 ;; (require 'init-textile)
@@ -92,23 +95,20 @@
 ;;   (require 'init-clojure-cider))
 ;; (require 'init-common-lisp)
 
-;; (when *spell-check-support-enabled*
-;;   (require 'init-spelling))
+(when *spell-check-support-enabled*
+  (require 'init-spelling))
 
-;; (require 'init-marmalade)
 (require 'init-misc)
 
-;; (require 'init-dash)
-;; (require 'init-ledger)
 ;; ;; Extra packages which don't require any configuration
 
 ;; (require-package 'gnuplot)
 (require-package 'lua-mode)
 (require-package 'htmlize)
-;; (require-package 'dsvn)
+(require-package 'dsvn)
 (when *is-a-mac*
   (require-package 'osx-location))
-;; (require-package 'regex-tool)
+(require-package 'regex-tool)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient

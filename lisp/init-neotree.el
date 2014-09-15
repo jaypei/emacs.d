@@ -8,7 +8,7 @@
        (n-git-autoloads-file (exz/make-dotemacs-path "site-lisp/neotree/neotree-autoloads.el"))
        (n-git-src-file (exz/make-dotemacs-path "site-lisp/neotree/neotree.el")))
 
-  (when (file-directory-p n-git-path)
+  (when (file-exists-p n-git-src-file)
     (add-to-list 'load-path n-git-path)
     (unless (file-exists-p n-git-autoloads-file)
       (update-file-autoloads n-git-src-file t n-git-autoloads-file))

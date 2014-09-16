@@ -66,6 +66,7 @@
 (require 'init-windows)
 (require 'init-fonts)
 ;; (require 'init-paredit)
+(require 'init-powerline)
 
 (require 'init-vc)
 (require 'init-darcs)

@@ -19,6 +19,8 @@
     (add-to-list 'slime-lisp-implementations
                  '(cmucl ("lisp") :coding-system iso-latin-1-unix))))
 
+(setq inferior-lisp-program "clisp")
+
 ;; From http://bc.tech.coop/blog/070515.html
 (defun lispdoc ()
   "Searches lispdoc.com for SYMBOL, which is by default the symbol currently under the curser"

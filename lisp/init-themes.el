@@ -17,8 +17,8 @@
                'monokai-theme
              'zenburn-theme)))
 
-(add-hook 'after-init-hook 'reapply-themes)
-
+;; (add-hook 'after-init-hook 'reapply-themes)
+(reapply-themes)
 
 (provide 'init-themes)
 ;;; init-themes.el ends here

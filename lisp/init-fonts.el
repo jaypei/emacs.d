@@ -12,10 +12,18 @@
     (set-fontset-font (frame-parameter nil 'font) charset 
                       (font-spec :family chinese :size chinese-size)))) 
 
+;; Mac chinese fonts:
+;; - Heiti SC
+;; - Hiragino Sans GB
+;; - KaiTi
+;; - STFangsong
+;; - STHeiti
+;; - STHupo
+;; - STKaiti
 (defun sanityinc/maybe-use-default-font-for-symbols ()
   "Force Emacs to render symbols using the default font, if so configured."
   (let (cn-name)
-    (setq cn-name (if *is-a-mac* "Hannotate SC" "文泉驿等宽微米黑"))
+    (setq cn-name (if *is-a-mac* "STHeiti" "文泉驿等宽微米黑"))
     (exz/set-font "Fantasque Sans Mono" cn-name 16 16)))
 
 (when (display-graphic-p)

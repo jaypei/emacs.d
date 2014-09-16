@@ -58,13 +58,13 @@
 (require 'init-ibuffer)
 (require 'init-flycheck)
 
+(require 'init-editing-utils)
 (require 'init-ido)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-yasnippet)
 (require 'init-windows)
 (require 'init-fonts)
-(require 'init-editing-utils)
 ;; (require 'init-paredit)
 
 (require 'init-vc)
@@ -89,9 +89,9 @@
 ;; (require 'init-rails)
 ;; (require 'init-sql)
 
-;; (require 'init-lisp)
-;; (require 'init-slime)
-;; (require 'init-clojure)
+(require 'init-lisp)
+(require 'init-slime)
+(require 'init-clojure)
 (when (>= emacs-major-version 24)
   (require 'init-clojure-cider))
 (require 'init-common-lisp)

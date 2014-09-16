@@ -2,7 +2,9 @@
   (require-package 'org))
 (require-package 'org-fstree)
 
-(require-package 'ox-reveal)
+(unless (package-installed-p 'ox-reveal)
+  (require 'org)
+  (require-package 'ox-reveal))
 
 (after-load 'org
   (require 'ox-publish)

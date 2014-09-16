@@ -11,7 +11,7 @@
 (require-package 'lively)
 
 (setq-default initial-scratch-message
-              (concat ";; Happy hacking " (or user-login-name "") "!\n\n"))
+              (concat ";; Happy hacking!\n\n"))
 
 
 
@@ -110,51 +110,6 @@
        (list "-Q" "-batch" "-f" "batch-byte-compile" filename)
        " ")))))
 
-
-;; ----------------------------------------------------------------------------
-;; Enable desired features for all lisp modes
-;; ----------------------------------------------------------------------------
-(require-package 'rainbow-delimiters)
-(require-package 'redshank)
-(after-load 'redshank
-  (diminish 'redshank-mode))
-
-
-(defun sanityinc/lisp-setup ()
-  "Enable features useful in any Lisp mode."
-  (rainbow-delimiters-mode t)
-  (turn-on-eldoc-mode)
-  (redshank-mode))
-
-(defun sanityinc/emacs-lisp-setup ()
-  "Enable features useful when working with elisp."
-  (elisp-slime-nav-mode t)
-  (set-up-hippie-expand-for-elisp)
-  (ac-emacs-lisp-mode-setup))
-
-(defconst sanityinc/elispy-modes
-  '(emacs-lisp-mode ielm-mode)
-  "Major modes relating to elisp.")
-
-(defconst sanityinc/lispy-modes
-  (append sanityinc/elispy-modes
-          '(lisp-mode inferior-lisp-mode lisp-interaction-mode))
-  "All lispy major modes.")
-
-(require 'derived)
-
-(dolist (hook (mapcar #'derived-mode-hook-name sanityinc/lispy-modes))
-  (add-hook hook 'sanityinc/lisp-setup))
-
-(dolist (hook (mapcar #'derived-mode-hook-name sanityinc/elispy-modes))
-  (add-hook hook 'sanityinc/emacs-lisp-setup))
-
-(defun sanityinc/maybe-check-parens ()
-  "Run `check-parens' if this is a lispy mode."
-  (when (memq major-mode sanityinc/lispy-modes)
-    (check-parens)))
-
-(add-hook 'after-save-hook #'sanityinc/maybe-check-parens)
 
 (require-package 'eldoc-eval)
 (require 'eldoc-eval)

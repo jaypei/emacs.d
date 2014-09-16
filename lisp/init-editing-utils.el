@@ -33,12 +33,11 @@
  set-mark-command-repeat-pop t
  show-trailing-whitespace t
  tooltip-delay 1.5
- truncate-lines t
  truncate-partial-width-windows nil
  visible-bell t
  auto-save-default nil
  kill-ring-max 200                  ; 用一个很大的 kill ring. 防止误删
- truncate-lines nil)
+ truncate-lines t)
 
 (when *is-a-mac*
   (setq-default locate-command "mdfind"))
@@ -109,6 +108,12 @@
 
 
 ;; Handy key bindings
+
+;; prefix definition
+(define-prefix-command 'exz-z-map)
+(global-set-key (kbd "C-x C-z") 'exz-z-map)
+(global-set-key (kbd "C-z") 'exz-z-map)
+
 ;; To be able to M-x without meta
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 

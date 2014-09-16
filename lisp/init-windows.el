@@ -28,6 +28,7 @@
 (global-set-key (kbd "M-p") 'window-move-down)
 (global-set-key (kbd "M-N") 'other-window-move-up)
 (global-set-key (kbd "M-P") 'other-window-move-down)
+(global-set-key (kbd "C-z k") 'delete-window)
 
 
 (provide 'init-windows)

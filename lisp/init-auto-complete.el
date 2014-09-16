@@ -14,14 +14,10 @@
 (setq-default ac-show-menu-immediately-on-auto-complete t)
 (setq-default ac-auto-show-menu t)
 
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; TODO: move to python and go
-;; (require 'go-autocomplete)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:complete-on-dot t))
-
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'auto-complete-config)
+            (ac-config-default)))
 
 ;;----------------------------------------------------------------------------
 ;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)

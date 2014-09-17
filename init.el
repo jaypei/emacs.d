@@ -83,6 +83,8 @@
 ;; (require 'init-html)
 ;; (require 'init-css)
 (require 'init-org)
+(require 'init-confluence)
+(require 'init-edit-server)
 ;; (require 'init-nxml)
 ;; (require 'init-haml)
 ;; (require 'init-haskell)

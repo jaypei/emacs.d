@@ -1,3 +1,13 @@
+;;; Package --- Org mode
+;;; Commentary:
+
+;;; Code:
+
+(unless (package-installed-p 'org)
+  (after-load 'org
+    (require 'ox-publish)
+    (require 'ox-html)))
+
 (when (< emacs-major-version 24)
   (require-package 'org))
 (require-package 'org-fstree)
@@ -5,10 +15,6 @@
 (unless (package-installed-p 'ox-reveal)
   (require 'org)
   (require-package 'ox-reveal))
-
-(after-load 'org
-  (require 'ox-publish)
-  (require 'ox-html))
 
 (when *is-a-mac*
   (require-package 'org-mac-link)
@@ -230,5 +236,13 @@
     (setq-default org-plantuml-jar-path
                   (expand-file-name "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar")))
 
+(custom-set-faces
+ '(variable-pitch ((t (:family "default")))))
 
 (provide 'init-org)
+;;; init-org.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

@@ -77,6 +77,7 @@
 (require 'init-python)
 (require 'init-golang)
 (require 'init-web-mode)
+(require 'init-yaml)
 ;; (require 'init-csv)
 ;; (require 'init-erlang)
 ;; (require 'init-javascript)

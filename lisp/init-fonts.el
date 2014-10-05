@@ -5,12 +5,12 @@
 ;; font
 (eval-when-compile (require 'cl))
 
-(defun exz/set-font (english chinese english-size chinese-size)
+(defun exz/set-font (english chinese english-size)
   (set-face-attribute 'default nil
                       :font (format "%s:pixelsize=%d" english english-size))
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family chinese :size chinese-size))))
+                      (font-spec :family chinese))))
 
 ;; Mac chinese fonts:
 ;; - Heiti SC
@@ -23,8 +23,8 @@
 (defun sanityinc/maybe-use-default-font-for-symbols ()
   "Force Emacs to render symbols using the default font, if so configured."
   (let (cn-name)
-    (setq cn-name (if *is-a-mac* "STHeiti" "文泉驿等宽微米黑"))
-    (exz/set-font "Fantasque Sans Mono" cn-name 16 16)))
+    (setq cn-name (if *is-a-mac* "STHeiti" "Adobe Heiti Std"))
+    (exz/set-font "Fantasque Sans Mono" cn-name 16)))
 
 (when (display-graphic-p)
   (add-hook 'after-init-hook 'sanityinc/maybe-use-default-font-for-symbols))

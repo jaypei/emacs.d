@@ -10,3 +10,5 @@
 /eshell/*
 /frame-restore-parameters
 /history
+/.python-environments
+/custom.el

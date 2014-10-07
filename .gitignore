@@ -12,3 +12,7 @@
 /history
 /.python-environments
 /custom.el
+/.bookmarks.el
+/.mc-lists.el
+/site-lisp/*
+

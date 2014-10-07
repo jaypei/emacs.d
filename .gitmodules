@@ -1,3 +1,0 @@
-[submodule "site-lisp/neotree"]
-	path = site-lisp/neotree
-	url = git@github.com:jaypei/emacs-neotree.git

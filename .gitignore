@@ -15,4 +15,4 @@
 /.bookmarks.el
 /.mc-lists.el
 /site-lisp/*
-
+/tramp

@@ -5,6 +5,7 @@
 
 
 (require-package 'jedi)
+(require-package 'virtualenvwrapper)
 
 
 (setq auto-mode-alist

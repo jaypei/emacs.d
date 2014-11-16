@@ -1,0 +1,12 @@
+# name: python shebang for qunar
+# key: qunar
+# --
+# -*- coding: utf-8 -*-
+# vim: ts=4 sw=4 ai et
+#
+# Copyright @ 2014 OPS, Qunar Inc. (qunar.com)
+#
+# Author: zhen.pei <zhen.pei@qunar.com>
+#
+
+$0

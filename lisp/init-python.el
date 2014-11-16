@@ -7,7 +7,6 @@
 (require-package 'jedi)
 (require-package 'virtualenvwrapper)
 
-
 (setq auto-mode-alist
       (append '(("SConstruct\\'" . python-mode)
 		("SConscript\\'" . python-mode))

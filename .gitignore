@@ -16,3 +16,4 @@
 /.mc-lists.el
 /site-lisp/*
 /projectile-bookmarks.eld
+/tramp

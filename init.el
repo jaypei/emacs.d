@@ -48,6 +48,7 @@
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
+(require 'init-shell)
 (require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-gui-frames)

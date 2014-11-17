@@ -53,6 +53,7 @@
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-proxies)
+(require 'init-projectile)
 (require 'init-dired)
 (require 'init-neotree)
 (require 'init-isearch)

@@ -237,7 +237,11 @@
                   (expand-file-name "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar")))
 
 (custom-set-faces
- '(variable-pitch ((t nil))))
+ '(variable-pitch ((t nil)))
+ '(org-level-1 ((((class color) (min-colors 89)) (:inherit variable-pitch :height 1.0 :foreground "#FD971F"))))
+ '(org-level-2 ((((class color) (min-colors 89)) (:inherit variable-pitch :height 1.0 :foreground "#A6E22E"))))
+ '(org-level-3 ((t (:inherit variable-pitch :foreground "#66D9EF" :height 1.0))))
+ '(org-level-4 ((t (:inherit variable-pitch :foreground "#E6DB74" :height 1.0)))))
 
 (provide 'init-org)
 ;;; init-org.el ends here

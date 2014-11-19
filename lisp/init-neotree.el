@@ -35,7 +35,7 @@
         (require pkg))
       (exz/debug (format "[SITE PACKAGE] %s loaded." pkg))))
   (when (and test-require in-elpa-p)
-    (unless (boundp test-require)
+    (unless (fboundp test-require)
       (require-package pkg))))
 
 (try-site-require-package 'neotree 'neotree-show t)

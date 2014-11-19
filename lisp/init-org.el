@@ -237,7 +237,7 @@
                   (expand-file-name "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar")))
 
 (custom-set-faces
- '(variable-pitch ((t (:family "default")))))
+ '(variable-pitch ((t nil))))
 
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -54,6 +54,8 @@
 ;; (global-set-key (kbd "C-c C-n") 'git-gutter:next-hunk)
 ;; (global-set-key (kbd "C-c C-p") 'git-gutter:previous-hunk)
 
+(custom-set-faces
+ '(magit-item-highlight ((t nil))))
 
 (provide 'init-git)
 ;;; init-git.el ends here

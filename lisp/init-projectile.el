@@ -4,9 +4,10 @@
 
 
 (require-package 'projectile)
+(require-package 'ack-and-a-half)
 (projectile-global-mode)
 
-(setq projectile-switch-project-action 'projectile-dired)
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

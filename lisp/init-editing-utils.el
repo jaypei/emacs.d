@@ -6,10 +6,10 @@
 
 ;;; Code:
 
-(require-package 'whole-line-or-region)
+(require-package 'guru-mode)
+(guru-global-mode +1)
 
-(when (fboundp 'electric-pair-mode)
-  (electric-pair-mode))
+(require-package 'whole-line-or-region)
 
 ;; Some basic preferences
 (setq-default

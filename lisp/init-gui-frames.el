@@ -23,10 +23,6 @@
 (setq inhibit-startup-echo-area-message t)
 (menu-bar-mode -1)                      ; menu-bar-mode
 
-;; 防止页面滚动时跳动
-(setq-default scroll-margin 3
-              scroll-conservatively 10000)
-
 
 
 ;;----------------------------------------------------------------------------

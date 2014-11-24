@@ -6,7 +6,7 @@
 (require-package 'sublimity)
 (require 'sublimity)
 (require 'sublimity-scroll)
-(require 'sublimity-map)
+;; (require 'sublimity-map)
 (sublimity-global-mode)
 
 
@@ -17,6 +17,8 @@
 (window-number-meta-mode)
 
 
+
+(require-package 'smooth-scrolling)
 
 ;; 防止页面滚动时跳动
 (setq-default scroll-margin 3

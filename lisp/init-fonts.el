@@ -24,7 +24,7 @@
   "Force Emacs to render symbols using the default font, if so configured."
   (let (cn-name)
     (setq cn-name (if *is-a-mac* "STHeiti" "Adobe Heiti Std"))
-    (exz/set-font "Ubuntu Mono" cn-name 18)))
+    (exz/set-font "Inconsolata" cn-name 18)))
 
 (when (display-graphic-p)
   (add-hook 'after-init-hook 'sanityinc/maybe-use-default-font-for-symbols))

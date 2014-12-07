@@ -1,3 +1,7 @@
+;;; Package --- SQL
+;;; Commentary:
+;;; Code:
+
 (require-package 'sql-indent)
 (after-load 'sql
   (require 'sql-indent))
@@ -32,4 +36,17 @@
 (after-load 'page-break-lines
   (push 'sql-mode page-break-lines-modes))
 
+(defun my-sql-connect (product connection)
+  ;; remember to set the sql-product, otherwise, it will fail for the first time
+  ;; you call the function
+  (setq sql-product product)
+  (sql-connect connection))
+
+
 (provide 'init-sql)
+;;; init-sql.el ends here
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:

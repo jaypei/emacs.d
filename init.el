@@ -22,6 +22,11 @@
 (defconst *is-my-home-arch* (equal (system-name) "jaypei-home"))
 (defconst *is-my-mbp-laptop* (equal (system-name) "jaypei-mbp.local"))
 
+(let ((home-dir (getenv "HOME")))
+  (if (null home-dir)
+      (setq home-dir "/root"))
+  (defconst *home-dir* home-dir))
+
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
@@ -61,7 +66,8 @@
 (require 'init-flycheck)
 
 (require 'init-editing-utils)
-(require 'init-ido)
+;; (require 'init-ido)
+(require 'init-helm)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-yasnippet)
@@ -132,6 +138,10 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(setq pass-file (expand-file-name "pass.el" *home-dir*))
+(when (file-exists-p pass-file)
+  (load pass-file))
 
 
 ;;----------------------------------------------------------------------------

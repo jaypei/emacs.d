@@ -19,6 +19,11 @@
 ;; (sml/apply-theme 'respectful)
 ;; (sml/apply-theme 'automatic)
 
+
+;; nyan-mode
+(require-package 'nyan-mode)
+(nyan-mode 1)
+
 (provide 'init-mode-line)
 ;;; init-mode-line.el ends here
 

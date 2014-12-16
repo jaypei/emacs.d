@@ -9,7 +9,7 @@
 (global-auto-complete-mode t)
 
 (setq-default ac-expand-on-auto-complete nil)
-(setq-default ac-auto-start nil) 	; def:nil
+(setq-default ac-auto-start t) 	; def:nil
 (setq-default ac-dwim nil) ; To get pop-ups with docs even if a word is uniquely completed
 (setq-default ac-show-menu-immediately-on-auto-complete t)
 (setq-default ac-auto-show-menu t)
@@ -74,8 +74,8 @@
 
 (setq dabbrev-friend-buffer-function 'sanityinc/dabbrev-friend-buffer)
 
-(global-set-key (kbd "M-/") 'auto-complete)
-(global-set-key (kbd "C-M-/") 'hippie-expand)
+(global-set-key (kbd "S-SPC") 'auto-complete)
+(global-set-key (kbd "C-S-SPC") 'hippie-expand)
 
 
 (provide 'init-auto-complete)

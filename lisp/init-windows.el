@@ -24,8 +24,7 @@
 ;; 防止页面滚动时跳动
 (setq-default scroll-margin 3
               scroll-conservatively 10000
-              smooth-scroll-margin 3
-              scroll-preserve-screen-position 'always)
+              smooth-scroll-margin 3)
 
 ;; Move window functions
 (defmacro exz/make-window-move-fn (fn-name scroll-fn &optional callback)

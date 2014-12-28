@@ -13,9 +13,9 @@
 
 
 ;; window-number
-(require-package 'window-number)
-(require 'window-number)
-(window-number-meta-mode)
+(require-package 'window-numbering)
+(require 'window-numbering)
+(window-numbering-mode)
 
 
 

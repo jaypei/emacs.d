@@ -12,9 +12,7 @@
   (require-package 'org))
 (require-package 'org-fstree)
 
-;; (unless (package-installed-p 'ox-reveal)
-;;   (require 'org)
-;;   (require-package 'ox-reveal))
+(autoload 'org-reveal-export-to-html-and-browse "ox-reveal" "" t nil)
 
 (when *is-a-mac*
   (require-package 'org-mac-link)

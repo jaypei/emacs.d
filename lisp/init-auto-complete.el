@@ -77,7 +77,6 @@
 (global-set-key (kbd "S-SPC") 'auto-complete)
 (global-set-key (kbd "C-S-SPC") 'hippie-expand)
 
-
 (provide 'init-auto-complete)
 ;;; init-auto-complete.el ends here
 

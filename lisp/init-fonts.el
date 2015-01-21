@@ -23,7 +23,7 @@
 (defun sanityinc/maybe-use-default-font-for-symbols ()
   "Force Emacs to render symbols using the default font, if so configured."
   (let (cn-name)
-    (setq cn-name (if *is-a-mac* "STHeiti" "Adobe Heiti Std"))
+    (setq cn-name (if *is-a-mac* "STHeiti" "STHeiti"))
     (setq en-name (if *is-a-mac* "Inconsolata" "Ubuntu Mono"))
     (exz/set-font en-name cn-name 18)))
 

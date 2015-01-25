@@ -17,7 +17,7 @@
   "Load theme."
   (require (if (display-graphic-p)
                'ir-black-theme
-             'zenburn-theme)))
+             'ir-black-theme)))
 
 ;; (add-hook 'after-init-hook 'reapply-themes)
 (reapply-themes)

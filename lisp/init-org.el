@@ -13,6 +13,7 @@
 (require-package 'org-fstree)
 
 (autoload 'org-reveal-export-to-html-and-browse "ox-reveal" "" t nil)
+(autoload 'org-reveal-export-to-html "ox-reveal" "" t nil)
 (setq org-reveal-root "/home/jaypei/work/reveal.js")
 
 (when *is-a-mac*

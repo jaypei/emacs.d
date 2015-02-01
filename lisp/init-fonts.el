@@ -25,7 +25,7 @@
   (let (cn-name)
     (setq cn-name (if *is-a-mac* "STHeiti" "STHeiti"))
     (setq en-name (if *is-a-mac* "Inconsolata" "Ubuntu Mono"))
-    (exz/set-font en-name cn-name 18)))
+    (exz/set-font en-name cn-name 16)))
 
 (when (display-graphic-p)
   (add-hook 'after-init-hook 'sanityinc/maybe-use-default-font-for-symbols))

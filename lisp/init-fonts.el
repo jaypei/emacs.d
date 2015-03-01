@@ -20,6 +20,8 @@
 ;; - STHeiti
 ;; - STHupo
 ;; - STKaiti
+;; - Fantasque Sans Mono
+;; - Ubuntu Mono
 (defun sanityinc/maybe-use-default-font-for-symbols ()
   "Force Emacs to render symbols using the default font, if so configured."
   (let (cn-name)

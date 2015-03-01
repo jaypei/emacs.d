@@ -66,6 +66,7 @@
 (require 'init-flycheck)
 
 (require 'init-editing-utils)
+(require 'init-bookmark)
 ;; (require 'init-ido)
 (require 'init-helm)
 (require 'init-hippie-expand)
@@ -89,6 +90,7 @@
 ;; (require 'init-csv)
 ;; (require 'init-erlang)
 (require 'init-javascript)
+(require 'init-cc-mode)
 ;; (require 'init-php)
 ;; (require 'init-html)
 ;; (require 'init-css)
@@ -96,6 +98,7 @@
 (require 'init-confluence)
 (require 'init-edit-server)
 (require 'init-weechat)
+(require 'init-ansible)
 ;; (require 'init-nxml)
 ;; (require 'init-haml)
 ;; (require 'init-haskell)

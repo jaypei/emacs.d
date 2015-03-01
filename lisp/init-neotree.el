@@ -44,6 +44,23 @@
 (customize-set-value 'neo-smart-open t)
 (global-set-key [f8] 'neotree-toggle)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; try to invoke neotree-find real-time (#47)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defvar neo-n1 nil)
+
+;; (defadvice buffer-list-update-hook
+;;   (around neotree-buffer-list-update-hook activate)
+;;   "Select WINDOW which must be a live window."
+;;   (interactive)
+;;   ad-do-it
+;;   (message "x")
+;;   ad-return-value)
+
+;; (add-hook 'buffer-list-update-hook
+;;           (lambda () (neotree-find)))
+
+
 (provide 'init-neotree)
 ;;; init-neotree.el ends here
 

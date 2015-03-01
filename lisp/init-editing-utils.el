@@ -6,9 +6,6 @@
 
 ;;; Code:
 
-(require-package 'guru-mode)
-(guru-global-mode +1)
-
 (require-package 'whole-line-or-region)
 
 ;; Some basic preferences
@@ -335,7 +332,6 @@ With arg N, insert N newlines."
               (if (sit-for 0.1 'nodisp) (setq stay nil) (insert ?\e)))
              (t (insert char)))))
         (insert-buffer-substring text)))))
-
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here

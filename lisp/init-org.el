@@ -3,6 +3,8 @@
 
 ;;; Code:
 
+(require-package 'gnuplot)
+
 (unless (package-installed-p 'org)
   (after-load 'org
     (require 'ox-publish)

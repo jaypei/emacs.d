@@ -26,7 +26,7 @@
   "Force Emacs to render symbols using the default font, if so configured."
   (let (cn-name)
     (setq cn-name (if *is-a-mac* "STHeiti" "STHeiti"))
-    (setq en-name (if *is-a-mac* "Inconsolata" "Ubuntu Mono"))
+    (setq en-name (if *is-a-mac* "Inconsolata" "Fantasque Sans Mono"))
     (exz/set-font en-name cn-name 16)))
 
 (when (display-graphic-p)

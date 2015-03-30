@@ -7,16 +7,13 @@
 (when (< emacs-major-version 24)
   (require-package 'color-theme))
 
-(require-package 'zenburn-theme)
+(require-package 'material-theme)
 (require-package 'ir-black-theme)
-;; (require-package 'monokai-theme)
-;; (require-package 'cyberpunk-theme)
-;; (require-package 'monochrome-theme)
 
 (defun reapply-themes ()
   "Load theme."
   (require (if (display-graphic-p)
-               'ir-black-theme
+               'material-theme
              'ir-black-theme)))
 
 ;; (add-hook 'after-init-hook 'reapply-themes)

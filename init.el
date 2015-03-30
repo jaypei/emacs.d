@@ -109,6 +109,7 @@
 (require 'init-lisp)
 (require 'init-slime)
 (require 'init-clojure)
+(require 'init-calfw)
 (when (>= emacs-major-version 24)
   (require 'init-clojure-cider))
 (require 'init-common-lisp)

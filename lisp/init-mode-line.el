@@ -3,6 +3,8 @@
 
 ;;; Code:
 
+(custom-set-faces
+ '(mode-line ((t (:background "black" :foreground "gray60")))))
 
 ;;; powerline
 ;; (require-package 'powerline)
@@ -18,6 +20,9 @@
 ;; (sml/apply-theme 'light)
 ;; (sml/apply-theme 'respectful)
 ;; (sml/apply-theme 'automatic)
+
+(custom-set-faces
+ '(mode-line ((t (:background "black" :foreground "gray60")))))
 
 
 ;; nyan-mode

@@ -4,7 +4,7 @@
 
 
 (require-package 'projectile)
-(require-package 'ack-and-a-half)
+(require-package 'helm-projectile)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)

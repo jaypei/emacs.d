@@ -10,9 +10,8 @@
 
 ;; Some basic preferences
 (setq-default
- blink-cursor-delay 0
- blink-cursor-interval 0.4
  bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
+ cursor-type 'box
  buffers-menu-max-size 30
  case-fold-search t
  column-number-mode t
@@ -39,6 +38,7 @@
   (setq-default locate-command "mdfind"))
 
 (transient-mark-mode t)
+(blink-cursor-mode -1)
 
 
 ;;; Whitespace
@@ -332,6 +332,13 @@ With arg N, insert N newlines."
               (if (sit-for 0.1 'nodisp) (setq stay nil) (insert ?\e)))
              (t (insert char)))))
         (insert-buffer-substring text)))))
+
+;; TODO
+(defun exz/select-last-buffer ()
+  (delq nil
+        (mapcar (lambda (x) (and (buffer-file-name x) x))
+                (buffer-list))))
+
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here

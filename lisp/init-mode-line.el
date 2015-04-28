@@ -6,12 +6,6 @@
 (custom-set-faces
  '(mode-line ((t (:background "black" :foreground "gray60")))))
 
-;;; powerline
-;; (require-package 'powerline)
-;; (when *is-gui*
-;;   (setq-default powerline-default-separator 'wave)
-;;   (powerline-default-theme))
-
 ;;; smart-mode-line
 (require-package 'smart-mode-line)
 (setq sml/no-confirm-load-theme t)
@@ -22,7 +16,7 @@
 ;; (sml/apply-theme 'automatic)
 
 (custom-set-faces
- '(mode-line ((t (:background "black" :foreground "gray60")))))
+ '(mode-line ((t (:background "black" :foreground "gray60" :inverse-video nil :family "Fantasque Sans Mono")))))
 
 
 ;; nyan-mode

@@ -205,6 +205,8 @@
 
 
 (after-load 'org
+  (define-key org-mode-map (kbd "C-a") 'move-beginning-of-line)
+  (define-key org-mode-map (kbd "C-j") 'newline-and-indent)
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)
   (when *is-a-mac*
     (define-key org-mode-map (kbd "M-h") nil))

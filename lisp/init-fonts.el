@@ -1,17 +1,6 @@
 ;;; Package --- Fonts
 ;;; Commentary:
 
-;;; Code:
-;; font
-(eval-when-compile (require 'cl))
-
-(defun exz/set-font (english chinese english-size)
-  (set-face-attribute 'default nil
-                      :font (format "%s:pixelsize=%d" english english-size))
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family chinese))))
-
 ;; Mac chinese fonts:
 ;; - Heiti SC
 ;; - Hiragino Sans GB
@@ -22,27 +11,53 @@
 ;; - STKaiti
 ;; - Fantasque Sans Mono
 ;; - Ubuntu Mono
-(defun sanityinc/maybe-use-default-font-for-symbols ()
+
+;;; Code:
+
+(eval-when-compile
+  (require 'cl))
+
+(defcustom exz:font/linux '("STHeiti" "Fantasque Sans Mono" 16)
+  "Linux font."
+  :type '(cons (string :tag "cn")
+               (string :tag "en")
+               (integer :tag "size"))
+  :group 'exz)
+
+(defcustom exz:font/osx '("STHeiti" "Inconsolata" 16)
+  "Mac osx font."
+  :type '(cons (string :tag "cn")
+               (string :tag "en")
+               (integer :tag "size"))
+  :group 'exz)
+
+
+(defun exz:maybe-use-default-font-for-symbols ()
   "Force Emacs to render symbols using the default font, if so configured."
-  (let (cn-name)
-    (setq cn-name (if *is-a-mac* "STHeiti" "STHeiti"))
-    (setq en-name (if *is-a-mac* "Inconsolata" "Fantasque Sans Mono"))
-    (exz/set-font en-name cn-name 16)))
+  (let (cst-var cn en size)
+    (setq cst-var (if *is-a-mac* exz:font/osx exz:font/linux))
+    (setq cn (car cst-var)
+          en (car (cdr cst-var))
+          size (car (cdr (cdr cst-var))))
+    (set-face-attribute 'default nil
+                        :font (format "%s:pixelsize=%d" en size))
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font) charset
+                        (font-spec :family cn)))))
+
 
 (when (display-graphic-p)
-  (add-hook 'after-init-hook 'sanityinc/maybe-use-default-font-for-symbols))
+  (add-hook 'after-init-hook 'exz:maybe-use-default-font-for-symbols))
 
 
 ;;; Changing font sizes
 
-(require 'cl)
-
-(defun sanityinc/font-name-replace-size (font-name new-size)
+(defun exz:font-name-replace-size (font-name new-size)
   (let ((parts (split-string font-name "-")))
     (setcar (nthcdr 7 parts) (format "%d" new-size))
     (mapconcat 'identity parts "-")))
 
-(defun sanityinc/increment-default-font-height (delta)
+(defun exz:increment-default-font-height (delta)
   "Adjust the default font height by DELTA on every frame.
 Emacs will keep the pixel size of the frame approximately the
 same.  DELTA should be a multiple of 10, to match the units used
@@ -53,23 +68,23 @@ by the :height face attribute."
       (with-selected-frame f
         ;; Latest 'set-frame-font supports a "frames" arg, but
         ;; we cater to Emacs 23 by looping instead.
-        (set-frame-font (sanityinc/font-name-replace-size
+        (set-frame-font (exz:font-name-replace-size
                          (face-font 'default)
                          new-point-height)
                         t)))
     (set-face-attribute 'default nil :height new-height)
     (message "Default font size is now %d" new-point-height)))
 
-(defun sanityinc/increase-default-font-height ()
+(defun exz:increase-default-font-height ()
   (interactive)
-  (sanityinc/increment-default-font-height 10))
+  (exz:increment-default-font-height 10))
 
-(defun sanityinc/decrease-default-font-height ()
+(defun exz:decrease-default-font-height ()
   (interactive)
-  (sanityinc/increment-default-font-height -10))
+  (exz:increment-default-font-height -10))
 
-(global-set-key (kbd "C-M-=") 'sanityinc/increase-default-font-height)
-(global-set-key (kbd "C-M--") 'sanityinc/decrease-default-font-height)
+(global-set-key (kbd "C-M-=") 'exz:increase-default-font-height)
+(global-set-key (kbd "C-M--") 'exz:decrease-default-font-height)
 
 
 

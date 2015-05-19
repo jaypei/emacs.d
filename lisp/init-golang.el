@@ -10,6 +10,11 @@
   (require 'go-autocomplete)
   (ac-config-default))
 
+(add-hook 'go-mode-hook
+          (function (lambda ()
+                      (setq indent-tabs-mode nil
+                            tab-width 2))))
+
 (provide 'init-golang)
 ;;; init-golang.el ends here
 

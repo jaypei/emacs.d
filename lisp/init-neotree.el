@@ -41,7 +41,10 @@
 (try-site-require-package 'neotree 'neotree-show t)
 (try-site-require-package 'neotree-projectile)
 
-(customize-set-value 'neo-smart-open t)
+(custom-set-variables
+ '(neo-theme (quote classic))
+ '(neo-smart-open t)
+ '(neo-vc-integration (quote (face))))
 (global-set-key [f8] 'neotree-toggle)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
